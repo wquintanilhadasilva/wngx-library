@@ -189,7 +189,7 @@ And, enjoy....
 
 **Typescript code:**
 
-Import component in file typescript (for example, *my-component.ts*) header:
+Import component in typescript file header, for example, *my-component.ts*:
 
 ```
 
@@ -197,7 +197,7 @@ Import component in file typescript (for example, *my-component.ts*) header:
 
 ```
 
-After, import the component in constructor
+After, import the component in constructor of component
 
 ```
 
