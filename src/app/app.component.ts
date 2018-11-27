@@ -51,7 +51,11 @@ export class AppComponent {
   }
 
   getDataFilterDeclarativeCode(filter): IUser[] {
-    return this.pipe.transform(this.getComplexType(), [{field: 'nome', value: filter}]);
+    return this.pipe.transform(this.getComplexType(),
+        [
+          {field: 'nome', value: filter},
+          {field: 'phone.number', value: filter}
+        ]);
   }
 
 }

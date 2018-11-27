@@ -110,7 +110,7 @@ And, enjoy....
 
 ```
 
-**Field filter in Level 1:**
+**Field filter in Level 1 (fields 'nome' and 'idade' of IUser interface):**
 
 ```
 
@@ -128,7 +128,7 @@ And, enjoy....
 
 ```
 
-**Field filter in Level 2 (String & Number):**
+**Field filter in Level 2 (String & Number) (fields 'ddd' and 'number' of 'phone' atribute of IUser interface):**
 
 ```
     <label>String and Number filter 2 - Field filter in Level 2</label>
@@ -166,27 +166,9 @@ And, enjoy....
 
 ```
 
-**Filter in Level 2, using declarative code:**
-
-```
-
-    <label>String filter 4 - Filter in declarative code</label>
-    <br>
-    <input type="text"  [(ngModel)]="filter4">
-    <br>
-    <h5>Using filter in declarative code</h5>
-    <ul>
-      <li *ngFor="let s of getDataFilterDeclarativeCode(filter4)">
-        name: {{s.nome}} - idade: {{s.idade}} - phone.ddd: {{s.phone.ddd}} - phone.number: {{s.phone.number}}
-      </li>
-    </ul>
-    <hr>
-
-```
-
 ### Filtering in declarative code
 
-**HTML Code:**
+**HTML:**
 
 ```
 
@@ -210,12 +192,16 @@ And, enjoy....
 ```
 
   getDataFilterDeclarativeCode(filter): IUser[] {
-    return this.pipe.transform(this.getComplexType(), [{field: 'nome', value: filter}]);
+    return this.pipe.transform(this.getComplexType(),  // Get array data to filter
+        [
+          {field: 'nome', value: filter},         // Filter in nome field - level 1
+          {field: 'phone.number', value: filter}  // Filter in phone.number field - level 2
+        ]);
   }
 
 ```
 
-This component work with infinite attribute level...
+This component work with **infinite attribute level filters** ...
 
 # Project info - source code
 
