@@ -189,6 +189,23 @@ And, enjoy....
 
 **Typescript code:**
 
+Import component in file ts header:
+
+```
+
+  import { WfilterPipe } from 'wngx-filter';
+
+```
+
+After, import the component in constructor
+
+```
+
+ constructor(private pipe: WfilterPipe) {}
+
+```
+Then use the pipe to filter in any method:
+
 ```
 
   getDataFilterDeclarativeCode(filter): IUser[] {
