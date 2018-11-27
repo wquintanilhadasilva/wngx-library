@@ -20,7 +20,7 @@ Details about this project and user tutorial
 
 For use this components, before, install this package with npm:
 
-    npm install w-ng5 --save
+    npm install wngx-filter --save
 
 After, import module in app.module
     
