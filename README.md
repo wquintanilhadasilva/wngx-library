@@ -55,7 +55,7 @@ And, enjoy....
 
 ```
 
-Method provider data list of simple string for using in samples
+**Method provider data list of simple string for using in samples**
 
 ```
 
@@ -69,7 +69,7 @@ Method provider data list of simple string for using in samples
 
 ```
 
-Method provider array complex data for using in samples:
+**Method provider array complex data for using in samples:**
 
 ```
 
@@ -90,6 +90,7 @@ Method provider array complex data for using in samples:
 
 ### Using in HTML
 
+**Filter simple string array (no complex type):**
 ```
 
   <label>String filter 0 - Simple string array (no complex type) </label>
@@ -105,6 +106,12 @@ Method provider array complex data for using in samples:
 
     <hr>
 
+```
+
+**Field filter in Level 1:**
+
+```
+
     <label>String filter 1 - Field filter in Level 1</label>
     <br>
     <input type="text"  [(ngModel)]="filter1">
@@ -117,7 +124,12 @@ Method provider array complex data for using in samples:
     </ul>
     <hr>
 
-    <label>String filter 2 - Field filter in Level 2</label>
+```
+
+**Field filter in Level 2 (String & Number):**
+
+```
+    <label>String and Number filter 2 - Field filter in Level 2</label>
     <br>
     <input type="text"  [(ngModel)]="filter2">
     <br>
@@ -128,6 +140,12 @@ Method provider array complex data for using in samples:
       </li>
     </ul>
     <hr>
+
+```
+
+**Filter in all fields of object in all levels (String & Number):**
+
+```
 
     <label>String filter 3 - Any Fileds of Object filter</label>
     <br>
@@ -143,6 +161,12 @@ Method provider array complex data for using in samples:
       </li>
     </ul>
     <hr>
+
+```
+
+**Filter in Level 2, using declarative code:**
+
+```
 
     <label>String filter 4 - Filter in declarative code</label>
     <br>
@@ -160,7 +184,7 @@ Method provider array complex data for using in samples:
 
 ### Filtering in declarative code
 
-HTML Code:
+**HTML Code:**
 
 ```
 
@@ -179,7 +203,7 @@ HTML Code:
 
 ```
 
-Typescript code:
+**Typescript code:**
 
 ```
 

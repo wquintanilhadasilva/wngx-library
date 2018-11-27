@@ -14,7 +14,7 @@
     "copy-files": "npm run copy-license && npm run copy-readme",
     "npm_pack": "cd dist/wngx-filter && npm pack",
     "package": "npm run build_lib && npm run copy-files && npm run npm_pack",
-    "publish": "npm publish ./dist/wngx-filter/wngx-filter-2.0.1.tgz"
+    "publish": "npm publish ./dist/wngx-filter/wngx-filter-2.0.2.tgz"
   },
   "private": false,
   "dependencies": {
@@ -54,6 +54,7 @@
     "tsickle": ">=0.29.0",
     "tslib": "^1.9.0",
     "tslint": "~5.11.0",
-    "typescript": "~3.1.1"
+    "typescript": "~3.1.1",
+    "copy": "^0.3.2"
   }
 }

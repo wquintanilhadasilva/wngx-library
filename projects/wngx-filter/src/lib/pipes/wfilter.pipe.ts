@@ -104,9 +104,7 @@ export class WfilterPipe implements PipeTransform {
     if (indexFind === fieldFind.length - 1) {
       // Se tiver valor, confere se contém o que está procurando...
       if (ref) {
-        console.log(ref);
         const value = this._replaceSpecialChars(ref.toString());
-        console.log(value);
         const normalizedSearch = this._replaceSpecialChars(
           search.toString().toLowerCase(),
         );
@@ -130,8 +128,8 @@ export class WfilterPipe implements PipeTransform {
     str = str.replace(/[èéêë]/, 'e');
     str = str.replace(/[ÍÏ]/, 'I');
     str = str.replace(/[íï]/, 'i');
-    str = str.replace(/[óõ]/, 'o');
-    str = str.replace(/[ÓÕ]/, 'O');
+    str = str.replace(/[óõö]/, 'o');
+    str = str.replace(/[ÓÕÖ]/, 'O');
     str = str.replace(/[úü]/, 'u');
     str = str.replace(/[ÚÜ]/, 'U');
     str = str.replace(/[Ç]/, 'C');
