@@ -189,7 +189,7 @@ And, enjoy....
 
 **Typescript code:**
 
-Import component in file ts header:
+Import component in file typescript (for example, *my-component.ts*) header:
 
 ```
 
