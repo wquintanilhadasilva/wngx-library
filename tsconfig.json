@@ -16,6 +16,14 @@
     "lib": [
       "es2018",
       "dom"
-    ]
+    ],
+    "paths": {
+      "wngx-filter": [
+        "dist/wngx-filter"
+      ],
+      "wngx-filter/*": [
+        "dist/wngx-filter/*"
+      ]
+    }
   }
 }

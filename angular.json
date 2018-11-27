@@ -133,6 +133,41 @@
           }
         }
       }
+    },
+    "wngx-filter": {
+      "root": "projects/wngx-filter",
+      "sourceRoot": "projects/wngx-filter/src",
+      "projectType": "library",
+      "prefix": "wf",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "projects/wngx-filter/tsconfig.lib.json",
+            "project": "projects/wngx-filter/ng-package.json"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/wngx-filter/src/test.ts",
+            "tsConfig": "projects/wngx-filter/tsconfig.spec.json",
+            "karmaConfig": "projects/wngx-filter/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/wngx-filter/tsconfig.lib.json",
+              "projects/wngx-filter/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
     }
   },
   "defaultProject": "wngx-library"
