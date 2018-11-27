@@ -29,7 +29,7 @@ export class ASCIIFolder {
    * @param replacement The character an unmapped character should be replaced with or null should the original
    * character be retained
    // tslint:disable-next-line:no-redundant-jsdoc
-   * @returns {string} The sanitized string
+   * @returns The sanitized string
    */
   static fold(str = '', replacement = ''): any {
 
@@ -58,7 +58,7 @@ export class ASCIIFolder {
    *
    * @param char The character to replace
    * @param replacement What string unmapped characters should be replaced with
-   * @returns {string} A string representing the replacement of the character
+   * @returns A string representing the replacement of the character
    */
   static replaceChar(char, replacement): any {
       const ascii = mapping.get(char.charCodeAt(0));
