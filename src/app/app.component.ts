@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { WfilterPipe } from 'wngx-filter';
+// import { WfilterPipe } from 'wngx-filter';
+import { WfilterPipe } from './../../projects/wngx-filter/src/lib/pipes/wfilter.pipe';
 
 export interface Phone {
   ddd: string;

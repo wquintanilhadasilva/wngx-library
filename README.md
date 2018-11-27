@@ -1,6 +1,8 @@
 # wngx-library
 
-Angular Generic Components
+Angular 7 generic components for array filter in *ngFor directive.
+
+Original project (migrate from): [w-ng5](https://www.npmjs.com/package/w-ng5) -> lib release compatible with version angular ^5x.
 
 # Objective
 

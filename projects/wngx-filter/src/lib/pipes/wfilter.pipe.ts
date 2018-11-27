@@ -1,4 +1,5 @@
 import { Pipe, PipeTransform } from '@angular/core';
+import { ASCIIFolder } from './ASCIIFolder';
 
 export interface FilterParam {
   field: string;
@@ -122,20 +123,7 @@ export class WfilterPipe implements PipeTransform {
   }
 
   private _replaceSpecialChars(str: string) {
-    str = str.replace(/[ÀÁÂÃÄÅ]/, 'A');
-    str = str.replace(/[àáâãäå]/, 'a');
-    str = str.replace(/[ÈÉÊË]/, 'E');
-    str = str.replace(/[èéêë]/, 'e');
-    str = str.replace(/[ÍÏ]/, 'I');
-    str = str.replace(/[íï]/, 'i');
-    str = str.replace(/[óõö]/, 'o');
-    str = str.replace(/[ÓÕÖ]/, 'O');
-    str = str.replace(/[úü]/, 'u');
-    str = str.replace(/[ÚÜ]/, 'U');
-    str = str.replace(/[Ç]/, 'C');
-    str = str.replace(/[ç]/, 'c');
-
-    return str.replace(/[^a-z0-9]/gi, '');
+    return ASCIIFolder.fold(str);
   }
 
 }
