@@ -23,107 +23,171 @@ For use this components, before, install this package with npm:
 After, import module in app.module
     
     ...
-    import { PipesModule } from 'w-ng5';
+    import { WngxFilterModule, WfilterPipe } from 'wngx-filter';
 
 In the next step, add in declare section of app.module:
 
     imports: [
-      PipesModule,
+      WngxFilterModule,
       ...
-    ]
+    ],
+    providers: [..., WfilterPipe, ...],
 
 And, enjoy....
 
 ## Sample use
 
-### Filtering simple string
-    <input type="text"  [(ngModel)]="filtroString">
+
+### Domain model using in Samples
+
+```
+
+  export interface Phone {
+    ddd: string;
+    number: number;
+  }
+
+  export interface IUser {
+    nome: string;
+    idade: number;
+    phone: Phone;
+  }
+
+```
+
+Method provider data list of simple string for using in samples
+
+```
+
+  getStrings() {
+    const retorno = [];
+    for (let i = 0; i < 10; i++) {
+      retorno.push(`Item ${i}`);
+    }
+    return retorno;
+  }
+
+```
+
+Method provider array complex data for using in samples:
+
+```
+
+  getComplexType(): IUser[] {
+    const retorno: IUser[] = [];
+    for (let i = 0; i < 10; i++) {
+      retorno.push({nome: `Nome ${i}`, idade: i});
+    }
+    retorno.push({nome: `Nómê com acêntó`, idade: 10});
+    retorno.push({nome: `Nómê com trëma`, idade: 10});
+    retorno.push({nome: `Nómê com pável`, idade: 10});
+    return retorno;
+  }
+
+```
+
+
+
+### Using in HTML
+
+```
+
+  <label>String filter 0 - Simple string array (no complex type) </label>
+    <br>
+    <input type="text"  [(ngModel)]="filter0">
+    <br>
+    <h5>Using simple string array filter</h5>
     <ul>
-      <li *ngFor="let s of getStrings() | filter:filtroString">
+      <li *ngFor="let s of getStrings() | wfilter:filter0">
         {{s}}
       </li>
     </ul>
 
-### Filtering complex string - field 'Value' in level 2
-    <input type="text"  [(ngModel)]="search">
+    <hr>
+
+    <label>String filter 1 - Field filter in Level 1</label>
+    <br>
+    <input type="text"  [(ngModel)]="filter1">
+    <br>
+    <h5>Using complex type and field level 1 filter</h5>
     <ul>
-      <li *ngFor="let s of getComplexTypesExtends() | filter:[{field:'n1.n2.valor2', value: search}]">
-        {{s.nome}} - {{s.idade}} - {{s.n1.valor1}} - {{s.n1.n2.valor2}}
+      <li *ngFor="let s of getComplexType() | wfilter: [{field:'nome', value:filter1}, {field:'idade', value:filter1}]">
+        name: {{s.nome}} - idade: {{s.idade}} - phone.ddd: {{s.phone.ddd}} - phone.number: {{s.phone.number}}
       </li>
     </ul>
+    <hr>
 
-### Filtering complex string - middle field - 'Value' in level 1
-    <input type="text"  [(ngModel)]="search3">
+    <label>String filter 2 - Field filter in Level 2</label>
+    <br>
+    <input type="text"  [(ngModel)]="filter2">
+    <br>
+    <h5>Using complex type and field level 2 filter</h5>
     <ul>
-      <li *ngFor="let s of getComplexTypesExtends() | filter:[{field:'n1.valor1', value: search3}]">
-        {{s.nome}} - {{s.idade}} - {{s.n1.valor1}} - {{s.n1.n2.valor2}}
+      <li *ngFor="let s of getComplexType() | wfilter: [{field:'phone.ddd', value:filter2}, {field:'phone.number', value:filter2}]">
+        name: {{s.nome}} - idade: {{s.idade}} - phone.ddd: {{s.phone.ddd}} - phone.number: {{s.phone.number}}
       </li>
     </ul>
+    <hr>
 
-### Filtering complex array simple - field 'Nome' level 0
-    <input type="text"  [(ngModel)]="search2">
+    <label>String filter 3 - Any Fileds of Object filter</label>
+    <br>
+    <input type="text"  [(ngModel)]="filter3">
+    <br>
+    <h5>Using complex type and any field filter</h5>
     <ul>
-      <li *ngFor="let s of getComplexTypesExtends() | filter:[{field:'nome', value: search2}]">
-        {{s.nome}} - {{s.idade}} - {{s.n1.valor1}} - {{s.n1.n2.valor2}}
+      <li *ngFor="let s of getComplexType() | wfilter: [{field:'nome',value:filter3},
+                                                  {field:'idade',value:filter3},
+                                                  {field:'phone.ddd',value:filter3},
+                                                  {field:'phone.number',value:filter3}]">
+          name: {{s.nome}} - idade: {{s.idade}} - phone.ddd: {{s.phone.ddd}} - phone.number: {{s.phone.number}}
       </li>
     </ul>
+    <hr>
 
-### Filtering in tree fields - field 'Valor' in level 2 or 'Valor' in level 1 or 'Nome' in level 0
-    <input type="text"  [(ngModel)]="search5">
+    <label>String filter 4 - Filter in declarative code</label>
+    <br>
+    <input type="text"  [(ngModel)]="filter4">
+    <br>
+    <h5>Using filter in declarative code</h5>
     <ul>
-      <li *ngFor="let s of getComplexTypesExtends() | filter:[{field:'n1.n2.valor2', value: search5}, {field:'n1.valor1', value: search5}, {field:'nome', value: search5}]">
-        {{s.nome}} - {{s.idade}} - {{s.n1.valor1}} - {{s.n1.n2.valor2}}
+      <li *ngFor="let s of getDataFilterDeclarativeCode(filter4)">
+        name: {{s.nome}} - idade: {{s.idade}} - phone.ddd: {{s.phone.ddd}} - phone.number: {{s.phone.number}}
       </li>
     </ul>
+    <hr>
 
-### Filtering nonexistent field - 'Valor' in nonexistent level 3
-    <input type="text"  [(ngModel)]="search4">
-    <ul>
-      <li *ngFor="let s of getComplexTypesExtends() | filter:[{field:'n1.n2.n3.valor3', value: search4}]">
-        {{s.nome}} - {{s.idade}} - {{s.n1.valor1}} - {{s.n1.n2.valor2}}
-      </li>
-    </ul>
+```
+
+### Filtering in declarative code
+
+HTML Code:
+
+```
+
+  <label>String filter 4 - Filter in declarative code</label>
+  <br>
+  <input type="text"  [(ngModel)]="filter4">
+  <br>
+  <h5>Using filter in declarative code</h5>
+  <ul>
+    <li *ngFor="let s of getDataFilterDeclarativeCode(filter4)">
+      name: {{s.nome}} - idade: {{s.idade}} - phone.ddd: {{s.phone.ddd}} - phone.number: {{s.phone.number}}
+    </li>
+  </ul>
+  <hr>
 
 
-### Filtering using inject FilterPipe in constructor of component
+```
 
-#### TypeScript method: 
+Typescript code:
 
-Define a provider:
-    
-    // Import component to use in this code
-    import { FilterPipe } from 'w-ng5';
+```
 
-    @Component({
-      selector: 'app-root',
-      templateUrl: './app.component.html',
-      styleUrls: ['./app.component.css'],
-      providers: [FilterPipe]
-    })
+  getDataFilterDeclarativeCode(filter): IUser[] {
+    return this.pipe.transform(this.getComplexType(), [{field: 'nome', value: filter}]);
+  }
 
-If your prefer, import component in the provider section of app.module
-
-Then import the pipe into the component constructor ...
-    
-    constructor(private pipe: FilterPipe) {}
-
-And, create a method 'dataSource(param)' that will return a array of data to view
-
-    public dataSource(textFilter) {
-      const r = this.pipe.transform(this.getComplexTypesExtends(),
-                                   [{field: 'n1.n2.valor2', value: textFilter}]);
-      return r;
-    }
-
-... after, using this method 'dataSource(param)' on ngFor directive in the template html:
-
-    <input type="text"  [(ngModel)]="search5">
-    <ul>
-      <li *ngFor="let s of dataSource(search5)">
-        {{s.nome}} - {{s.idade}} - {{s.n1.valor1}} - {{s.n1.n2.valor2}}
-      </li>
-    </ul>
-
+```
 
 This component work with infinite attribute level...
 

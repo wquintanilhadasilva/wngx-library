@@ -1,9 +1,15 @@
 import { Component } from '@angular/core';
 import { WfilterPipe } from 'wngx-filter';
 
+export interface Phone {
+  ddd: string;
+  number: string;
+}
+
 export interface IUser {
   nome: string;
   idade: number;
+  phone: Phone;
 }
 
 @Component({
@@ -14,18 +20,17 @@ export interface IUser {
 export class AppComponent {
   title = 'wngx-library';
 
-  filtroString: string;
-  search: any;
-  search2: any;
-  search3: any;
-  search4: any;
-  search5: any;
-  search6: any;
+  filter0: string;
+  filter1: string;
+  filter2: string;
+  filter3: string;
+  filter4: string;
 
   constructor(private pipe: WfilterPipe) {
+
   }
 
-  getStrings() {
+  getStrings(): string[] {
     const retorno = [];
     for (let i = 0; i < 10; i++) {
       retorno.push(`Item ${i}`);
@@ -36,38 +41,16 @@ export class AppComponent {
   getComplexType(): IUser[] {
     const retorno: IUser[] = [];
     for (let i = 0; i < 10; i++) {
-      retorno.push({nome: `Nome ${i}`, idade: i});
+      retorno.push({nome: `Nome ${i}`, idade: i, phone: {ddd: '0' + i, number: '358799-' + i}});
     }
+    retorno.push({nome: `Nómê com acêntó`, idade: 10,  phone: {ddd: '062', number: '358799-10'}});
+    retorno.push({nome: `Nómê com trëma`, idade: 8,  phone: {ddd: '068', number: '358799-88'}});
+    retorno.push({nome: `Nómê com pável`, idade: 7,  phone: {ddd: '067', number: '358799-77'}});
     return retorno;
   }
 
-  getComplexTypesExtends() {
-    const retorno = [];
-    for (let i = 0; i < 10; i++) {
-      const objeto = new Object();
-      objeto['nome'] = `Nome ${i}`;
-      objeto['idade'] = i;
-
-      const N1 = new Object();
-      N1['valor1'] = `Nível1 N1 ${i}`;
-
-      const N2 = new Object();
-      N2['valor2'] = `valor N2 ${i}`;
-      N1['n2'] = N2;
-
-      objeto['n1'] = N1;
-
-      retorno.push(objeto);
-    }
-    retorno[0].n1.n2.valor2 = 'Pável';
-    return retorno;
-
-  }
-
-  public filtrar(search4) {
-    const r = this.pipe.transform(this.getComplexTypesExtends(),
-                                  [{field: 'n1.n2.valor2', value: search4}]);
-    return r;
+  getDataFilterDeclarativeCode(filter): IUser[] {
+    return this.pipe.transform(this.getComplexType(), [{field: 'nome', value: filter}]);
   }
 
 }

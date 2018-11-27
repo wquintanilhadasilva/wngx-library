@@ -7,7 +7,14 @@
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+    "build_lib": "ng build wngx-filter",
+    "copy-license": "copy .\\LICENSE .\\dist\\wngx-filter",
+    "copy-readme": "copy .\\README.md .\\dist\\wngx-filter",
+    "copy-files": "npm run copy-license && npm run copy-readme",
+    "npm_pack": "cd dist/wngx-filter && npm pack",
+    "package": "npm run build_lib && npm run copy-files && npm run npm_pack",
+    "publish": "npm publish ./dist/wngx-filter/wngx-filter-2.0.1.tgz"
   },
   "private": false,
   "dependencies": {

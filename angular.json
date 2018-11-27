@@ -146,6 +146,7 @@
             "tsConfig": "projects/wngx-filter/tsconfig.lib.json",
             "project": "projects/wngx-filter/ng-package.json"
           }
+
         },
         "test": {
           "builder": "@angular-devkit/build-angular:karma",

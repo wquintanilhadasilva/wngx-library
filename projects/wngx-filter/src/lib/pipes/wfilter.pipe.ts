@@ -104,7 +104,9 @@ export class WfilterPipe implements PipeTransform {
     if (indexFind === fieldFind.length - 1) {
       // Se tiver valor, confere se contém o que está procurando...
       if (ref) {
+        console.log(ref);
         const value = this._replaceSpecialChars(ref.toString());
+        console.log(value);
         const normalizedSearch = this._replaceSpecialChars(
           search.toString().toLowerCase(),
         );
