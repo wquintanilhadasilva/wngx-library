@@ -18,7 +18,7 @@ Details about this project and user tutorial
 
 ## How to install and configure
 
-For use this components, before, install this package with npm:
+For use this components, before, install this package with [npm](https://www.npmjs.com/package/wngx-filter):
 
     npm install wngx-filter --save
 
