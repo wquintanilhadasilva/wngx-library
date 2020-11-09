@@ -33,6 +33,9 @@
   <ul>
     <li *ngFor="let s of getComplexType() | wfilter: [{field:'phone.ddd', value:filter2}, {field:'phone.number', value:filter2}]">
       name: {{s.nome}} - idade: {{s.idade}} - phone.ddd: {{s.phone.ddd}} - phone.number: {{s.phone.number}}
+      <ul>
+        <li *ngFor="let r of s.roles">{{r.id}}-{{r.description}}</li>
+      </ul>
     </li>
   </ul>
   <hr>
@@ -60,6 +63,9 @@
   <ul>
     <li *ngFor="let s of getDataFilterDeclarativeCode(filter4)">
       name: {{s.nome}} - idade: {{s.idade}} - phone.ddd: {{s.phone.ddd}} - phone.number: {{s.phone.number}}
+      <ul>
+        <li *ngFor="let r of s.roles">{{r.id}}-{{r.description}}</li>
+      </ul>
     </li>
   </ul>
   <hr>

@@ -3,7 +3,7 @@ import { ASCIIFolder } from './ASCIIFolder';
 
 export interface FilterParam {
   field: string;
-  value: string;
+  value: string | FilterParam[];
 }
 
 @Pipe({
@@ -30,7 +30,7 @@ export class WfilterPipe implements PipeTransform {
     }
   }
 
-  private _checkSimpleType(values: any[], filter: string | number): any {
+  private _checkSimpleType(values: any[], filter: string | number ): any {
     if (!values || !filter) {
       return values;
     }
@@ -58,7 +58,21 @@ export class WfilterPipe implements PipeTransform {
       let match = false;
       // find in all filters in the array of filters
       filter.forEach((field) => {
-        match = match || this._checkValue(row, field);
+
+        if (field.value instanceof Array) {
+          if (field.value[0].value) {
+            const temp: any[] = this._checkComplexType(row[field.field], field.value);
+            // se houver registro, é pq deve participar do resultado
+            match = match || (temp !== null && temp !== undefined && temp.length > 0);
+          } else {
+            // não informou o filtro...
+            match = match || true;
+          }
+
+        } else {
+          match = match || this._checkValue(row, field);
+        }
+
       });
       if (match) {
         result.push(row); // add row in return
@@ -127,3 +141,9 @@ export class WfilterPipe implements PipeTransform {
   }
 
 }
+
+/**
+ * function checkTypeIsObject(v: any): any {
+    return typeof v === 'object' && v !== null;
+   }
+ */
