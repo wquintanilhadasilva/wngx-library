@@ -1,4 +1,4 @@
-# wngx-library
+# wngx-filter
 
 Angular 7 generic components for array filter in *ngFor directive.
 
@@ -37,9 +37,15 @@ In the next step, add in declare section of app.module:
 
 And, enjoy....
 
+
 ## Sample use
 
-An **online example** can be accessed at [stackblitz](https://stackblitz.com/edit/angular-ivy-wngx-filter) 
+
+A **online examples** can be accessed at:
+* [stackblitz - Sample Code](https://stackblitz.com/edit/angular-ivy-wngx-filter)
+* [stackblitz - Article Demo Code](https://stackblitz.com/edit/article-demo)
+
+
 
 ### Domain model using in Samples
 

@@ -59,15 +59,14 @@ export class WfilterPipe implements PipeTransform {
       // find in all filters in the array of filters
       filter.forEach((field) => {
 
-        if (field.value instanceof Array) {
-          if (field.value[0].value) {
-            const temp: any[] = this._checkComplexType(row[field.field], field.value);
-            // se houver registro, é pq deve participar do resultado
-            match = match || (temp !== null && temp !== undefined && temp.length > 0);
-          } else {
-            // não informou o filtro...
-            match = match || true;
-          }
+        // lê o valor da propriedade
+        const v = row[field.field];
+        // Se o valor for um array, então faz a chamada recursiva
+        if (v !== null && v !== undefined && v instanceof Array) {
+
+          const temp: any[] = this.transform(v, field.value);
+          // se houver registro, é pq deve participar do resultado
+          match = match || (temp !== null && temp !== undefined && temp.length > 0);
 
         } else {
           match = match || this._checkValue(row, field);

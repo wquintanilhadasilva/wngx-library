@@ -7,10 +7,11 @@ import { WfilterPipe } from './../../projects/wngx-filter/src/lib/pipes/wfilter.
 // import { WngxFilterModule, WfilterPipe } from 'wngx-filter';
 
 import { AppComponent } from './app.component';
+import { ExampleComponent } from './example/example.component';
 
 @NgModule({
   declarations: [
-    AppComponent,
+    AppComponent, ExampleComponent
   ],
   imports: [
   BrowserModule,

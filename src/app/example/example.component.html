@@ -1,0 +1,148 @@
+<section>
+  <h3>Complex Type Filter</h3>
+  <label>Filter user name or code</label>
+  <br>
+  <input type="text"  [(ngModel)]="filter1">
+  <br>
+  <ul>
+    <!--fields: user.name && user.code -->
+    <li *ngFor="let s of users | wfilter:
+      [
+        {field:'name',value: filter1},
+        {field:'code',value: filter1}
+      ]"
+    >
+      {{s.code}}::{{s.name}}::{{s.person.name}}::{{s.person.nationalId}}
+      <ul>
+        <li *ngFor="let t of s.tags">{{t}}</li>
+      </ul>
+      <ul> Group Data:
+        <li *ngFor="let g of s.groups">
+          {{g.id}}::{{g.name}}
+          <ul> Group Tags:
+            <li *ngFor="let w of g.tags">{{w}}</li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  </ul>
+
+  <hr>
+
+  <label>Filter person name or person national id</label>
+  <br>
+  <input type="text"  [(ngModel)]="filter5">
+  <br>
+  <ul>
+    <!--fields: user.name && user.code -->
+    <li *ngFor="let s of users | wfilter:
+      [
+        {field:'person.name',value: filter5},
+        {field:'person.nationalId',value: filter5}
+      ]"
+    >
+      {{s.code}}::{{s.name}}::{{s.person.name}}::{{s.person.nationalId}}
+      <ul>
+        <li *ngFor="let t of s.tags">{{t}}</li>
+      </ul>
+      <ul> Group Data:
+        <li *ngFor="let g of s.groups">
+          {{g.id}}::{{g.name}}
+          <ul> Group Tags:
+            <li *ngFor="let w of g.tags">{{w}}</li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  </ul>
+
+  <hr>
+
+  <label>Filter group name or id</label>
+  <br>
+  <input type="text"  [(ngModel)]="filter2">
+  <br>
+  <ul>
+    <!--fields: user.groups.name && user.groups.id -->
+    <li *ngFor="let s of users | wfilter:
+      [
+        {field:'groups', value:
+          [
+            {field: 'name', value: filter2},
+            {field: 'id', value: filter2}
+          ]
+      }
+    ]"
+  >
+      {{s.code}}::{{s.name}}::{{s.person.name}}::{{s.person.nationalId}}
+      <ul>
+        <li *ngFor="let t of s.tags">{{t}}</li>
+      </ul>
+      <ul> Group Data:
+        <li *ngFor="let g of s.groups">
+          {{g.id}}::{{g.name}}
+          <ul> Group Tags:
+            <li *ngFor="let w of g.tags">{{w}}</li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  </ul>
+  <hr>
+
+  <label>Filter user tag or group tag</label>
+  <br>
+  <input type="text"  [(ngModel)]="filter3">
+  <br>
+  <ul>
+    <!--fields: user.tags && user.groups.tags -->
+    <li *ngFor="let s of users | wfilter:
+      [
+        {field:'tags', value: filter3},
+        {field:'groups', value:
+          [
+            {field: 'tags', value: filter3}
+          ]
+      }
+    ]"
+  >
+      {{s.code}}::{{s.name}}::{{s.person.name}}::{{s.person.nationalId}}
+      <ul>
+        <li *ngFor="let t of s.tags">{{t}}</li>
+      </ul>
+      <ul> Group Data:
+        <li *ngFor="let g of s.groups">
+          {{g.id}}::{{g.name}}
+          <ul> Group Tags:
+            <li *ngFor="let w of g.tags">{{w}}</li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  </ul>
+  <hr>
+
+  <label>Filter user all fields using search method</label>
+  <br>
+  <input type="text"  [(ngModel)]="filter4">
+  <br>
+  <ul>
+    <!-- all fields and nested fields -->
+    <li *ngFor="let s of search(filter4)">
+      {{s.code}}::{{s.name}}::{{s.person.name}}::{{s.person.nationalId}}
+      <ul>
+        <li *ngFor="let t of s.tags">{{t}}</li>
+      </ul>
+      <ul> Group Data:
+        <li *ngFor="let g of s.groups">
+          {{g.id}}::{{g.name}}
+          <ul> Group Tags:
+            <li *ngFor="let w of g.tags">{{w}}</li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  </ul>
+  <hr>
+
+</section>
