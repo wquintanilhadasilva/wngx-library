@@ -49,10 +49,16 @@ And, enjoy....
     number: number;
   }
 
+  export interface Role {
+    id: string;
+    description: string;
+  }
+
   export interface IUser {
     nome: string;
     idade: number;
     phone: Phone;
+    roles: Role[] | null;
   }
 
 ```
@@ -185,6 +191,47 @@ And, enjoy....
   <hr>
 
 
+```
+
+### Filter child fields of complex type array
+
+*Filter a Array complex type 'Roles' attribute of IUser interface*
+
+**Typescript**
+
+```
+getDataFilterDeclarativeCode(filter): IUser[] {
+    return this.pipe.transform(this.getComplexType(),  // Get array data to filter
+        [
+          {field: 'nome', value: filter},         // Filter in nome field - level 1
+          {field: 'phone.number', value: filter}, // Filter in phone.number field - level 2
+          {field: 'roles', value: [
+            {field: 'id', value: filter},         // Filter in roles[?].id
+            {field: 'role', value: filter},       // Filter in roles[?].role
+          ]}  
+        ]);
+  }
+```
+
+**HTML**
+
+```
+<ul>
+  <li *ngFor="let s of getComplexType() | wfilter:
+                                            [
+                                              {field:'nome',value:filter3},
+                                              {field:'roles', value:
+                                                [
+                                                  {field: 'role', value: filter3}
+                                                ]
+                                              }
+                                            ]">
+      name: {{s.nome}} - idade: {{s.idade}} - phone.ddd: {{s.phone.ddd}} - phone.number: {{s.phone.number}}
+      <ul>
+        <li *ngFor="let r of s.roles">{{r.id}} - {{r.description}}</li>
+      </ul>
+  </li>
+</ul>
 ```
 
 **Typescript code:**
