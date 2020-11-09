@@ -4,10 +4,10 @@
   "newProjectRoot": "projects",
   "projects": {
     "wngx-library": {
-      "root": "",
+      "root": "projects/wngx-filter",
       "sourceRoot": "src",
-      "projectType": "application",
-      "prefix": "wl",
+      "projectType": "library",
+      "prefix": "lib",
       "schematics": {
         "@schematics/angular:component": {
           "styleext": "scss"
